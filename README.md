@@ -1,5 +1,4 @@
 # WeatherApp
-                                                                   Weather Application
 
 Flow:
 •	User open “Weather App”
