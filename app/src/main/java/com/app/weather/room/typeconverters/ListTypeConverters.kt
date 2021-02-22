@@ -15,7 +15,7 @@ class ListTypeConverters {
                 return emptyList()
             }
             val listType = object : TypeToken<List<WeatherModel?>?>() {}.type
-            return  Gson().fromJson<List<WeatherModel>>(data, listType)
+            return  Gson().fromJson(data, listType)
         }
 
         @TypeConverter

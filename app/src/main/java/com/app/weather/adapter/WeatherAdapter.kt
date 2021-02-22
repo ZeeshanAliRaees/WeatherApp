@@ -8,10 +8,10 @@ import com.app.weather.R
 import com.app.weather.databinding.ItemForcastListBinding
 import com.app.weather.listeners.WeatherClickListener
 import com.app.weather.models.ForcastModel
-import com.example.weather.util.Tools
+import com.app.weather.util.Tools
 
 
-class WeatherAdapter(private val itemList: ArrayList<ForcastModel>?, var weatherClickListener: WeatherClickListener) :
+class WeatherAdapter(private val itemList: ArrayList<ForcastModel>?, private var weatherClickListener: WeatherClickListener) :
       RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
@@ -19,30 +19,27 @@ class WeatherAdapter(private val itemList: ArrayList<ForcastModel>?, var weather
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding: ItemForcastListBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+        val binding: ItemForcastListBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
             R.layout.item_forcast_list, parent, false)
         binding.clickListener=weatherClickListener
         return ViewHolder(binding)
     }
 
     class ViewHolder(itemBinding: ItemForcastListBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        var binding: ItemForcastListBinding
-        init {
-            binding = itemBinding
-        }
+        var binding: ItemForcastListBinding=itemBinding
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val forcastModel=itemList?.get(position)
         if(forcastModel!=null) {
             holder.binding.item = forcastModel
-            if (forcastModel?.weather?.get(0) != null &&
-                Tools.hasValue(forcastModel.weather?.get(0)?.main) != null) {
-                holder.binding.txtWeatherCondition.setText(forcastModel?.weather?.get(0)?.main)
+            if (forcastModel.weather?.get(0) != null &&
+                Tools.hasValue(forcastModel.weather?.get(0)?.main)) {
+                holder.binding.txtWeatherCondition.text=forcastModel.weather?.get(0)?.main
             }
 
-            if (Tools.hasValue(forcastModel?.dt_txt)) {
-                holder.binding.txtDateFormat.setText(Tools.convertDateToFormt(forcastModel?.dt_txt))
+            if (Tools.hasValue(forcastModel.dt_txt)) {
+                holder.binding.txtDateFormat.text=Tools.convertDateToFormt(forcastModel.dt_txt)
             }
         }
     }

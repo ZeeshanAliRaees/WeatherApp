@@ -1,4 +1,4 @@
-package com.example.weather.room
+package com.app.weather.room
 
 object RoomConstants {
     const val DB_NAME = "forcast.db"

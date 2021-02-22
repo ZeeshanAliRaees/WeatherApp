@@ -2,6 +2,5 @@
 <resources>
     <string name="city_name">City Name</string>
     <string name="lookup">Lookup</string>
-    <string name="api_key">65d00499677e59496ca2f318eb68c049</string>
     <string name="temp">Temp: </string>
 </resources>

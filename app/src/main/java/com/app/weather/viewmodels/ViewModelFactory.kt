@@ -1,13 +1,13 @@
 package com.app.weather.viewmodels
 
-import android.content.Context
-import androidx.lifecycle.ViewModel
+ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.weather.repository.MainRepository
-import com.example.weather.viewmodel.WeatherListViewModel
+import com.app.weather.repository.MainRepository
 
-class ViewModelFactory(val repo: MainRepository, val context: Context) : ViewModelProvider.Factory {
+
+class ViewModelFactory(private val repo: MainRepository) : ViewModelProvider.Factory {
+    @SuppressWarnings("unchecked")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return WeatherListViewModel(repo,context) as T
+        return WeatherListViewModel(repo) as T
     }
 }

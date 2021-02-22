@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.fragments.WeatherDetailFragment">
+    <data>
+        <variable
+            name="item"
+            type="com.app.weather.models.ForcastModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+    <LinearLayout
+        android:id="@+id/firstLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:orientation="vertical"
+        android:background="@color/background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:descendantFocusability="blocksDescendants"
+        android:weightSum="3">
+        <TextView
+             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/_5sdp"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:text='@{"Min Temp: ".concat(item.main.temp_min != null ? item.main.temp_min  : "")}'
+            android:background="@color/white"/>
+        <TextView
+             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/_5sdp"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:text='@{"Max Temp: ".concat(item.main.temp_max != null ? item.main.temp_max  : "")}'
+            android:background="@color/white"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:layout_margin="@dimen/_5sdp"
+            android:text='@{"Description".concat("  ").concat(item.weather.get(0).description!= null ? item.weather.get(0).description  : "")}'/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:orientation="vertical"
+            android:background="@color/background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/firstLayout"
+            android:descendantFocusability="blocksDescendants"
+            android:weightSum="3">
+            <TextView
+                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_margin="@dimen/_5sdp"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:text='@{"Wind Speed: ".concat(item.wind.speed != null ? item.wind.speed  : "")}'
+                android:background="@color/white"/>
+            <TextView
+                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:layout_margin="@dimen/_5sdp"
+                android:singleLine="true"
+                android:layout_weight="1"
+                android:text='@{"Wind Deg: ".concat(item.wind.deg != null ? item.wind.deg  : "")}'
+                android:background="@color/white"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_margin="@dimen/_5sdp"
+                android:text='@{"Humidity: ".concat(item.main.humidity != null ? item.main.humidity  : "")}'
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

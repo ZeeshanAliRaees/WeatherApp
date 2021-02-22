@@ -1,4 +1,4 @@
-package com.example.weather.network
+package com.app.weather.network
 
 import com.app.weather.BuildConfig
 import okhttp3.OkHttpClient
@@ -9,13 +9,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    const val BaseUrl = "https://api.openweathermap.org/"
-    val retrofitClient: Retrofit.Builder by lazy {
-        val levelType: HttpLoggingInterceptor.Level
-        if (BuildConfig.BUILD_TYPE.contentEquals("debug"))
-            levelType = HttpLoggingInterceptor.Level.BODY else levelType = HttpLoggingInterceptor.Level.NONE
+    private const val BaseUrl = "https://api.openweathermap.org/"
+    private val logging = HttpLoggingInterceptor()
+    private const val strDebug = "debug"
 
-        val logging = HttpLoggingInterceptor()
+    private val retrofitClient: Retrofit.Builder by lazy {
+        val levelType: HttpLoggingInterceptor.Level
+
+        if (BuildConfig.BUILD_TYPE.contentEquals(strDebug)){
+            levelType = HttpLoggingInterceptor.Level.BODY
+        }
+        else {
+            levelType = HttpLoggingInterceptor.Level.NONE
+        }
+
         logging.setLevel(levelType)
 
         val okhttpClient = OkHttpClient.Builder()
