@@ -78,6 +78,7 @@ class WeatherListFragment : Fragment() , WeatherClickListener {
                     Resource.Status.SUCCESS -> {
                         weatherFragmentBinding.progressBar.visibility=View.GONE
                         if (!it.data.isNullOrEmpty()){
+                            weatherFragmentBinding.txtNoDataFound.visibility=View.GONE
                             weatherFragmentBinding.wetherRecyclerView.adapter =
                                 WeatherAdapter(
                                     ArrayList(it.data),
@@ -87,6 +88,8 @@ class WeatherListFragment : Fragment() , WeatherClickListener {
                     }
                     Resource.Status.ERROR -> {
                         Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+                        weatherFragmentBinding.txtNoDataFound.visibility=View.VISIBLE
+
                     }
 
                     Resource.Status.LOADING ->{
